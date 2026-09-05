@@ -67,6 +67,25 @@ void PCor(tabela y[]){
 	}
 }
 
+void OrdAlf(tabela y[]){
+	tabela aux;
+	for(i=0;i<2;++i){
+		for(int j = 0;j<2-i;++j){
+			if(strcmp(y[j].modelo, y[j+1].modelo) > 0){
+				aux = y[j];
+				y[j] = y[j+1];
+				y[j+1] = aux;
+			}
+		}
+	}
+	for(i=0;i<3;++i){
+		printf("Modelo carro: %s\n", y[i].modelo);
+		printf("Cor: %s\n", y[i].cor);
+		printf("Placa: %s\n", y[i].placa);
+		printf("Preco: %f\n\n", y[i].preco);
+	}
+}
+
 int main(){
 	int Am;
 	tabela x[3];
@@ -77,9 +96,9 @@ int main(){
 		switch(Am){
 			case 1:cadastro(x);	break;
 			case 2:PCor(x);	break;
-			case 3:	break;
+			case 3:OrdAlf(x);	break;
 			case 4:	break;
-			case 5: break;
+			case 5:printf("Saida..."); break;
 			default: printf("Comando inexistente\n\n");	break;
 		}
 	}
