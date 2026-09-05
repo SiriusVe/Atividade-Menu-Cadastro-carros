@@ -52,7 +52,7 @@ void PCor(tabela y[]){
 	fgets(pesq, 20, stdin);
 	pesq[strcspn(pesq, "\n")] = '\0';
 	
-	for(i=0;i<4;++i){
+	for(i=0;i<3;++i){
 		
 		if(strcmp(pesq, y[i].cor) == 0){
 			flag = 1;
@@ -86,6 +86,43 @@ void OrdAlf(tabela y[]){
 	}
 }
 
+void altDados(tabela y[]){
+	int c, flag=-1;
+	char pesq[50];
+	printf("Insira o modelo do carro a ser alterado: ");
+	while((c = getchar()) != '\n' && c!=EOF);
+	fgets(pesq, 50, stdin);
+	pesq[strcspn(pesq, "\n")] = '\0';
+	
+	for(i=0;i<3;++i){
+		if(strcmp(pesq, y[i].modelo) == 0){
+			flag = i;
+		}
+	}
+	if(flag == -1){
+		printf("Modelo nao encontrado\n\n");
+	}
+	else{
+		
+		printf("Insira o Modelo do Carro %i: ", flag + 1);
+		fgets(y[flag].modelo, 50 ,stdin);
+		y[flag].modelo[strcspn(y[flag].modelo, "\n")] = '\0';
+	
+		printf("Insira a Cor do Carro %i: ", flag+ 1);
+		fgets(y[flag].cor, 20, stdin);
+		y[flag].cor[strcspn(y[flag].cor, "\n")] = '\0';
+	
+	
+		printf("Insira a Placa do Carro %i: ", flag+1);
+		fgets(y[flag].placa, 10, stdin);
+		y[flag].placa[strcspn(y[flag].placa, "\n")] = '\0';
+	
+		printf("Insira o preco do Carro %i: ", flag + 1);
+		scanf("%f", &y[flag].preco);
+	}
+	
+}
+
 int main(){
 	int Am;
 	tabela x[3];
@@ -97,7 +134,7 @@ int main(){
 			case 1:cadastro(x);	break;
 			case 2:PCor(x);	break;
 			case 3:OrdAlf(x);	break;
-			case 4:	break;
+			case 4:altDados(x);	break;
 			case 5:printf("Saida..."); break;
 			default: printf("Comando inexistente\n\n");	break;
 		}
